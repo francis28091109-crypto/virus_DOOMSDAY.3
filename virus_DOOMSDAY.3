@@ -1,94 +1,11 @@
-index.html.<script>
-setTimeout(() => {
-  document.body.innerHTML = `
-    <h1 style="color:red; font-size:50px;">💀 VIRUS ATIVADO 💀</h1>
-    <p>Seu sistema não pode ser recuperado...</p>
-  `;
-}, 10000);
-</script>
-<audio autoplay loop>
-  <source src="https://www.myinstants.com/media/sounds/creepy-sound-effect.mp3" type="audio/mpeg">
-</audio>
-<script>
-setInterval(() => {
-  alert("⚠️ Erro crítico detectado!");
-}, 3000);
-</script>
-<div id="count">10</div>
-<script>
-let i = 10;
-const count = document.getElementById("count");
-const timer = setInterval(() => {
-  i--;
-  count.textContent = i;
-  if (i <= 0) {
-    clearInterval(timer);
-    alert("💀 Seu PC foi corrompido!");
-  }
-}, 1000);
-</script>
-<script>
-function tremer() {
-  document.body.style.position = "relative";
-  let i = 0;
-  setInterval(() => {
-    document.body.style.left = (i % 2 === 0 ? "10px" : "-10px");
-    i++;
-  }, 100);
-}
-setTimeout(tremer, 3000); // começa a tremer depois de 3 segundos
-</script>
-<script>
-setInterval(() => {
-  document.body.style.backgroundColor = 
-    "#" + Math.floor(Math.random()*16777215).toString(16);
-}, 500);
-</script>
-<script>
-setInterval(() => {
-  document.body.innerHTML += "<p style='color:lime;'>010101010101010</p>";
-}, 200);
-</script>
-<script>
-setTimeout(() => {
-  document.body.style.transform = "rotate(180deg)";
-}, 5000); // 5 segundos depois
-</script>
-<div id="hack"></div>
-<script>
-const msg = "⚠️ Iniciando invasão ao sistema... ⚠️";
-let i = 0;
-function digitar() {
-  if (i < msg.length) {
-    document.getElementById("hack").innerHTML += msg.charAt(i);
-    i++;
-    setTimeout(digitar, 100);
-  }
-}
-digitar();
-</script>
-<button id="btn">Clique aqui!</button>
-<script>
-const btn = document.getElementById("btn");
-btn.style.position = "absolute";
-btn.onmouseover = () => {
-  btn.style.left = Math.random()*80 + "%";
-  btn.style.top = Math.random()*80 + "%";
-<script>
-setInterval(() => {
-  document.body.style.visibility = 
-    (document.body.style.visibility === "hidden" ? "visible" : "hidden");
-}, 200);
-</script>
-<script>
-setInterval(() => {
-  console.error("⚠️ ERRO CRÍTICO: sistema comprometido!");
-}, 500);
-</script>
-<button onclick="alert('❌ Falha ao corrigir erro!')">Corrigir Problema</button>
-<button onclick="alert('💀 Infecção irreversível detectada!')">Cancelar</button>
-<script>
-setTimeout(() => {
-  document.body.innerHTML = "<h1 style='color:red; font-size:50px;'>💀 VOCÊ FOI HACKEADO 💀</h1>";
-}, 10000); // depois de 10 segundos
-</script>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Teste GitHub Pages</title>
+</head>
+<body style="background:black; color:lime; text-align:center; font-family:monospace;">
+  <h1>🚀 GitHub Pages Funcionando!</h1>
+  <p>Se você está vendo essa mensagem, o link tá certo 😎</p>
+</body>
+</html>
