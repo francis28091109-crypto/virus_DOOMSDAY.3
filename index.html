@@ -1,5 +1,5 @@
 index.html.  
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -19,14 +19,14 @@ index.html.
     overflow: hidden;
   }
   h1 { font-size: 15vw; margin: 0; }
-  p { font-size: 4vw; max-width: 90%; }
+  #mensagem { font-size: 4vw; max-width: 90%; margin: 2vw; }
   #count { font-size: 10vw; margin: 3vw 0; color: red; }
 </style>
 </head>
 <body ontouchstart="startTroll()">
 
 <h1>💀</h1>
-<p id="mensagem">⚠️ VÍRUS DOOMSDAY ATIVO! ⚠️</p>
+<div id="mensagem">⚠️ VÍRUS DOOMSDAY ATIVO! ⚠️</div>
 <div id="count">10</div>
 
 <script>
@@ -35,7 +35,7 @@ let i = 10;
 const counter = document.getElementById("count");
 const mensagem = document.getElementById("mensagem");
 
-// Função para alertas hacker
+// Mensagens hacker
 const mensagensHacker = [
   "⚠️ INTRUSÃO DETECTADA!",
   "🔥 SEGURANÇA VIOLADA!",
@@ -44,7 +44,7 @@ const mensagensHacker = [
   "🚨 SISTEMA COMPROMETIDO!"
 ];
 
-// Alertas em pop-up
+// Alertas pop-up
 function alertaPopup() {
   const msg = mensagensHacker[Math.floor(Math.random() * mensagensHacker.length)];
   alert(msg);
@@ -103,20 +103,4 @@ function contagem() {
       // Mensagem letal
       counter.textContent = "💀";
       mensagem.textContent = "⚠️ SISTEMA TOTALMENTE COMPROMETIDO! VÍRUS DOOMSDAY LETAL ATIVADO! ⚠️";
-      falaAtaque("⚠️ ALERTA MÁXIMO! SISTEMA TOTALMENTE COMPROMETIDO! VÍRUS DOOMSDAY LETAL ATIVADO!");
-    }
-  }, 1000);
-}
-
-// Inicia todos os efeitos quando o usuário toca
-function startTroll(){
-  playAudio();
-  tremerTela();
-  fundoPisca();
-  setInterval(alertaPopup, 15000);
-  contagem();
-}
-</script>
-
-</body>
-</html>
+      falaAtaque("⚠️ ALERTA MÁXIMO! SISTEMA TOTALMENTE COMPROMETIDO! VÍRUS DOOMSDAY LETAL ATIVADO!")
