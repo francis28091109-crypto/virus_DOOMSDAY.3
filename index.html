@@ -3,77 +3,94 @@ index.html
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Erro Crítico do Sistema</title>
+<title>Vírus DOOMSDAY</title>
 <style>
   body {
-    background-color: #0c1c8c;
-    color: #fff;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: black;
+    color: lime;
+    font-family: monospace;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
     text-align: center;
-    margin: 0;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
   }
-  h1 { font-size: 80px; margin: 0; }
-  p { font-size: 22px; max-width: 600px; }
-  #count { font-size: 28px; color: yellow; margin: 20px 0; }
-  img { width: 150px; margin-top: 20px; }
+  h1 { font-size: 15vw; margin: 0; }
+  p { font-size: 4vw; max-width: 90%; }
+  #alerta { font-size: 5vw; margin: 3vw 0; }
+  button {
+    background: lime;
+    color: black;
+    font-size: 4vw;
+    margin: 2vw;
+    padding: 2vw;
+    border: none;
+    border-radius: 1vw;
+  }
+  img { width: 30vw; margin-top: 3vw; }
 </style>
 </head>
-<body>
-  <!-- Som assustador -->
-  <audio autoplay loop>
-    <source src="https://www.myinstants.com/media/sounds/creepy-sound-effect.mp3" type="audio/mpeg">
-  </audio>
+<body ontouchstart="playAudio()">
 
-  <h1>:(</h1>
-  <p>Seu PC encontrou um problema e precisa ser reiniciado.</p>
-  <p>Estamos coletando algumas informações de erro e depois reiniciaremos para você.</p>
+<h1>💀</h1>
+<p id="mensagem">⚠️ VÍRUS DOOMSDAY ATIVO! ⚠️</p>
+<div id="alerta">Prepare-se para o impacto!</div>
 
-  <div id="count">Reiniciando em 10 segundos...</div>
-  <p>Código do erro: CRITICAL_FAKE_VIRUS</p>
+<img src="https://api.qrserver.com/v1/create-qr-code/?data=https://seu-site-troll.com&size=150x150" alt="QR Code Fake">
 
-  <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://seu-site-troll.com&size=150x150" alt="QR Code Fake">
+<button onclick="alert('⚠️ Vírus ativo!')" ontouchstart="alert('⚠️ Vírus ativo!')">Clique aqui!</button>
 
 <script>
-  // Contagem regressiva
-  let i = 10;
-  const counter = document.getElementById("count");
-  const interval = setInterval(() => {
-    i--;
-    counter.textContent = "Reiniciando em " + i + " segundos...";
-    if (i <= 0) {
-      clearInterval(interval);
+// Sons assustadores
+let audioPlayed = false;
+function playAudio(){
+  if(audioPlayed) return;
+  audioPlayed = true;
+  const sounds = [
+    "https://www.myinstants.com/media/sounds/creepy-sound-effect.mp3",
+    "https://www.myinstants.com/media/sounds/scary-sound.mp3"
+  ];
+  const audio = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
+  audio.loop = true;
+  audio.play();
+}
 
-      // Tela final de “vírus”
-      document.body.innerHTML = `
-        <h1 style="font-size:100px;">💀</h1>
-        <p style="font-size:28px;">Seu sistema foi corrompido por um vírus desconhecido!</p>
-        <p style="font-size:22px; color:red;">Pressione CTRL+ALT+DEL para continuar...</p>
-      `;
+// Tela tremer
+setInterval(() => {
+  document.body.style.position = "relative";
+  document.body.style.left = Math.random()*30 - 15 + "px";
+  document.body.style.top = Math.random()*30 - 15 + "px";
+}, 100);
 
-      // Tela treme
-      let j = 0;
-      setInterval(() => {
-        document.body.style.left = (j % 2 === 0 ? "10px" : "-10px");
-        j++;
-      }, 100);
+// Fundo piscando
+setInterval(() => {
+  document.body.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+}, 300);
 
-      // Cores piscando
-      setInterval(() => {
-        document.body.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
-      }, 500);
+// Alertas interativos
+setInterval(() => {
+  if(confirm("⚠️ Sistema comprometido! Continuar?")){
+    alert("💀 O vírus continua ativo!");
+  } else {
+    alert("😂 A diversão continua!");
+  }
+}, 15000);
 
-      // Alertas infinitos
-      setInterval(() => {
-        alert("⚠️ ERRO CRÍTICO: sistema comprometido!");
-      }, 5000);
-    }
-  }, 1000);
+// Mensagem hacker estilo Doomsday
+setInterval(() => {
+  const hackerMsgs = [
+    "!!! VÍRUS DOOMSDAY ATIVO !!!",
+    "TODOS OS MÓDULOS COMPROMETIDOS!",
+    "COMANDOS NÃO AUTORIZADOS EM EXECUÇÃO!",
+    "INTERFACES SOB CONTROLE DO VÍRUS!",
+    "TODOS OS SISTEMAS CONECTADOS EM RISCO!"
+  ];
+  document.getElementById("mensagem").textContent = hackerMsgs[Math.floor(Math.random() * hackerMsgs.length)];
+}, 7000);
 </script>
+
 </body>
 </html>
