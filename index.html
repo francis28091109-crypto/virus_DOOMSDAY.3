@@ -1,36 +1,54 @@
 index.html.  
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Vírus DOOMSDAY</title>
+<style>
+  body {
+    background-color: black;
+    color: lime;
+    font-family: monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+  h1 { font-size: 15vw; margin: 0; }
+  p { font-size: 4vw; max-width: 90%; }
+  #count { font-size: 10vw; margin: 3vw 0; color: red; }
+</style>
+</head>
+<body ontouchstart="startTroll()">
+
+<h1>💀</h1>
+<p id="mensagem">⚠️ VÍRUS DOOMSDAY ATIVO! ⚠️</p>
+<div id="count">10</div>
+
 <script>
-// Mensagens estilo ataque hacker Doomsday
-const mensagens = [
-  "⚠️ ALERTA CRÍTICO: INTRUSÃO DETECTADA NOS SISTEMAS PRINCIPAIS!",
-  "🔥 MÚLTIPLAS CAMADAS DE SEGURANÇA VIOLADAS!",
-  "💀 TODOS OS ARQUIVOS CRÍTICOS ESTÃO SENDO CRIPTOGRAFADOS!",
-  "⚡ COMANDOS NÃO AUTORIZADOS EM EXECUÇÃO! INTERFACES INSTÁVEIS!",
-  "🚨 SISTEMA TOTALMENTE COMPROMETIDO! INTERVENÇÃO HUMANA BLOQUEADA!",
-  "⚠️ ATAQUE MALICIOSO EM PROGRESSO! TODOS OS MÓDULOS SOB RISCO!",
-  "💀 ALERTA FINAL: VÍRUS DOOMSDAY ATIVO!"
+// Variáveis
+let i = 10;
+const counter = document.getElementById("count");
+const mensagem = document.getElementById("mensagem");
+
+// Função para alertas hacker
+const mensagensHacker = [
+  "⚠️ INTRUSÃO DETECTADA!",
+  "🔥 SEGURANÇA VIOLADA!",
+  "💀 ARQUIVOS CRÍTICOS CORROMPIDOS!",
+  "⚡ COMANDOS NÃO AUTORIZADOS!",
+  "🚨 SISTEMA COMPROMETIDO!"
 ];
 
-// Função para mostrar alertas de ataque
-function mostrarAtaque() {
-  const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
+// Alertas em pop-up
+function alertaPopup() {
+  const msg = mensagensHacker[Math.floor(Math.random() * mensagensHacker.length)];
   alert(msg);
 }
-
-// Alertas contínuos (intervalos aleatórios entre 10 e 20 segundos)
-setInterval(() => mostrarAtaque(), 10000 + Math.random()*10000);
-
-// Tela tremer mais forte
-setInterval(() => {
-  document.body.style.position = "relative";
-  document.body.style.left = Math.random()*40 - 20 + "px";
-  document.body.style.top = Math.random()*40 - 20 + "px";
-}, 80);
-
-// Fundo piscando vermelho/preto estilo emergência
-setInterval(() => {
-  document.body.style.backgroundColor = Math.random() > 0.5 ? "red" : "black";
-}, 200);
 
 // Sons assustadores
 let audioPlayed = false;
@@ -47,33 +65,58 @@ function playAudio(){
   audio.play();
 }
 
-// Mensagem falada (Text-to-Speech)
-function falaAtaque() {
+// Tela tremer
+function tremerTela() {
+  setInterval(() => {
+    document.body.style.position = "relative";
+    document.body.style.left = Math.random()*40 - 20 + "px";
+    document.body.style.top = Math.random()*40 - 20 + "px";
+  }, 80);
+}
+
+// Fundo piscando vermelho/preto
+function fundoPisca() {
+  setInterval(() => {
+    document.body.style.backgroundColor = Math.random() > 0.5 ? "red" : "black";
+  }, 200);
+}
+
+// Mensagem falada
+function falaAtaque(msg) {
   if (!('speechSynthesis' in window)) return;
-  const alerta = new SpeechSynthesisUtterance(
-    "⚠️ ALERTA MÁXIMO! Ataque hacker detectado! Sistemas comprometidos! Vírus Doomsday ativo!"
-  );
+  const alerta = new SpeechSynthesisUtterance(msg);
   alerta.lang = 'pt-BR';
   alerta.rate = 1;
   alerta.pitch = 1;
   speechSynthesis.speak(alerta);
 }
 
-// Executa a fala e som quando o usuário toca na tela
-document.body.ontouchstart = () => {
-  playAudio();
-  falaAtaque();
-};
+// Contagem regressiva
+function contagem() {
+  const countdown = setInterval(() => {
+    counter.textContent = i;
+    i--;
+    // Mensagem hacker muda
+    mensagem.textContent = mensagensHacker[Math.floor(Math.random() * mensagensHacker.length)];
+    if(i < 0){
+      clearInterval(countdown);
+      // Mensagem letal
+      counter.textContent = "💀";
+      mensagem.textContent = "⚠️ SISTEMA TOTALMENTE COMPROMETIDO! VÍRUS DOOMSDAY LETAL ATIVADO! ⚠️";
+      falaAtaque("⚠️ ALERTA MÁXIMO! SISTEMA TOTALMENTE COMPROMETIDO! VÍRUS DOOMSDAY LETAL ATIVADO!");
+    }
+  }, 1000);
+}
 
-// Mensagem em loop no corpo da página (para dar efeito de ataque hacker)
-setInterval(() => {
-  const hackerMsgs = [
-    "!!! VÍRUS DOOMSDAY ATIVO !!!",
-    "TODOS OS MÓDULOS COMPROMETIDOS!",
-    "COMANDOS NÃO AUTORIZADOS EM EXECUÇÃO!",
-    "INTERFACES SOB CONTROLE DO VÍRUS!",
-    "TODOS OS SISTEMAS CONECTADOS EM RISCO!"
-  ];
-  document.body.querySelector('p').textContent = hackerMsgs[Math.floor(Math.random() * hackerMsgs.length)];
-}, 5000);
+// Inicia todos os efeitos quando o usuário toca
+function startTroll(){
+  playAudio();
+  tremerTela();
+  fundoPisca();
+  setInterval(alertaPopup, 15000);
+  contagem();
+}
 </script>
+
+</body>
+</html>
