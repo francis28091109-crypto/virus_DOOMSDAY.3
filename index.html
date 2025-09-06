@@ -19,14 +19,14 @@ index.html.
     overflow: hidden;
   }
   h1 { font-size: 15vw; margin: 0; }
-  #mensagem { font-size: 4vw; max-width: 90%; margin: 2vw; }
+  #mensagem { font-size: 4vw; max-width: 90%; margin: 2vw; min-height: 6vw; }
   #count { font-size: 10vw; margin: 3vw 0; color: red; }
 </style>
 </head>
 <body ontouchstart="startTroll()">
 
 <h1>💀</h1>
-<div id="mensagem">⚠️ VÍRUS DOOMSDAY ATIVO! ⚠️</div>
+<div id="mensagem"></div>
 <div id="count">10</div>
 
 <script>
@@ -91,16 +91,44 @@ function falaAtaque(msg) {
   speechSynthesis.speak(alerta);
 }
 
-// Contagem regressiva
+// Função de digitação animada
+function digitarMensagem(msg, elemento, velocidade = 50) {
+  elemento.textContent = "";
+  let index = 0;
+  const intervalo = setInterval(() => {
+    elemento.textContent += msg.charAt(index);
+    index++;
+    if (index >= msg.length) clearInterval(intervalo);
+  }, velocidade);
+}
+
+// Contagem regressiva com animação de digitação
 function contagem() {
   const countdown = setInterval(() => {
     counter.textContent = i;
     i--;
-    // Mensagem hacker muda
-    mensagem.textContent = mensagensHacker[Math.floor(Math.random() * mensagensHacker.length)];
+    // Mensagem hacker muda com digitação
+    const msg = mensagensHacker[Math.floor(Math.random() * mensagensHacker.length)];
+    digitarMensagem(msg, mensagem, 50);
     if(i < 0){
       clearInterval(countdown);
-      // Mensagem letal
+      // Mensagem letal com animação
+      digitarMensagem("⚠️ SISTEMA TOTALMENTE COMPROMETIDO! VÍRUS DOOMSDAY LETAL ATIVADO! ⚠️", mensagem, 40);
       counter.textContent = "💀";
-      mensagem.textContent = "⚠️ SISTEMA TOTALMENTE COMPROMETIDO! VÍRUS DOOMSDAY LETAL ATIVADO! ⚠️";
-      falaAtaque("⚠️ ALERTA MÁXIMO! SISTEMA TOTALMENTE COMPROMETIDO! VÍRUS DOOMSDAY LETAL ATIVADO!")
+      falaAtaque("⚠️ ALERTA MÁXIMO! SISTEMA TOTALMENTE COMPROMETIDO! VÍRUS DOOMSDAY LETAL ATIVADO!");
+    }
+  }, 1000);
+}
+
+// Inicia todos os efeitos quando o usuário toca
+function startTroll(){
+  playAudio();
+  tremerTela();
+  fundoPisca();
+  setInterval(alertaPopup, 15000);
+  contagem();
+}
+</script>
+
+</body>
+</html>
