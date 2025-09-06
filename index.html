@@ -1,49 +1,37 @@
-index.html
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<title>Vírus DOOMSDAY</title>
-<style>
-  body {
-    background-color: black;
-    color: lime;
-    font-family: monospace;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-  }
-  h1 { font-size: 15vw; margin: 0; }
-  p { font-size: 4vw; max-width: 90%; }
-  #alerta { font-size: 5vw; margin: 3vw 0; }
-  button {
-    background: lime;
-    color: black;
-    font-size: 4vw;
-    margin: 2vw;
-    padding: 2vw;
-    border: none;
-    border-radius: 1vw;
-  }
-  img { width: 30vw; margin-top: 3vw; }
-</style>
-</head>
-<body ontouchstart="playAudio()">
-
-<h1>💀</h1>
-<p id="mensagem">⚠️ VÍRUS DOOMSDAY ATIVO! ⚠️</p>
-<div id="alerta">Prepare-se para o impacto!</div>
-
-<img src="https://api.qrserver.com/v1/create-qr-code/?data=https://seu-site-troll.com&size=150x150" alt="QR Code Fake">
-
-<button onclick="alert('⚠️ Vírus ativo!')" ontouchstart="alert('⚠️ Vírus ativo!')">Clique aqui!</button>
-
+index.html  
 <script>
+// Mensagens estilo ataque hacker Doomsday
+const mensagens = [
+  "⚠️ ALERTA CRÍTICO: INTRUSÃO DETECTADA NOS SISTEMAS PRINCIPAIS!",
+  "🔥 MÚLTIPLAS CAMADAS DE SEGURANÇA VIOLADAS!",
+  "💀 TODOS OS ARQUIVOS CRÍTICOS ESTÃO SENDO CRIPTOGRAFADOS!",
+  "⚡ COMANDOS NÃO AUTORIZADOS EM EXECUÇÃO! INTERFACES INSTÁVEIS!",
+  "🚨 SISTEMA TOTALMENTE COMPROMETIDO! INTERVENÇÃO HUMANA BLOQUEADA!",
+  "⚠️ ATAQUE MALICIOSO EM PROGRESSO! TODOS OS MÓDULOS SOB RISCO!",
+  "💀 ALERTA FINAL: VÍRUS DOOMSDAY ATIVO!"
+];
+
+// Função para mostrar alertas de ataque
+function mostrarAtaque() {
+  const msg = mensagens[Math.floor(Math.random() * mensagens.length)];
+  alert(msg);
+}
+
+// Alertas contínuos (intervalos aleatórios entre 10 e 20 segundos)
+setInterval(() => mostrarAtaque(), 10000 + Math.random()*10000);
+
+// Tela tremer mais forte
+setInterval(() => {
+  document.body.style.position = "relative";
+  document.body.style.left = Math.random()*40 - 20 + "px";
+  document.body.style.top = Math.random()*40 - 20 + "px";
+}, 80);
+
+// Fundo piscando vermelho/preto estilo emergência
+setInterval(() => {
+  document.body.style.backgroundColor = Math.random() > 0.5 ? "red" : "black";
+}, 200);
+
 // Sons assustadores
 let audioPlayed = false;
 function playAudio(){
@@ -51,35 +39,33 @@ function playAudio(){
   audioPlayed = true;
   const sounds = [
     "https://www.myinstants.com/media/sounds/creepy-sound-effect.mp3",
-    "https://www.myinstants.com/media/sounds/scary-sound.mp3"
+    "https://www.myinstants.com/media/sounds/scary-sound.mp3",
+    "https://www.myinstants.com/media/sounds/siren.mp3"
   ];
   const audio = new Audio(sounds[Math.floor(Math.random() * sounds.length)]);
   audio.loop = true;
   audio.play();
 }
 
-// Tela tremer
-setInterval(() => {
-  document.body.style.position = "relative";
-  document.body.style.left = Math.random()*30 - 15 + "px";
-  document.body.style.top = Math.random()*30 - 15 + "px";
-}, 100);
+// Mensagem falada (Text-to-Speech)
+function falaAtaque() {
+  if (!('speechSynthesis' in window)) return;
+  const alerta = new SpeechSynthesisUtterance(
+    "⚠️ ALERTA MÁXIMO! Ataque hacker detectado! Sistemas comprometidos! Vírus Doomsday ativo!"
+  );
+  alerta.lang = 'pt-BR';
+  alerta.rate = 1;
+  alerta.pitch = 1;
+  speechSynthesis.speak(alerta);
+}
 
-// Fundo piscando
-setInterval(() => {
-  document.body.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
-}, 300);
+// Executa a fala e som quando o usuário toca na tela
+document.body.ontouchstart = () => {
+  playAudio();
+  falaAtaque();
+};
 
-// Alertas interativos
-setInterval(() => {
-  if(confirm("⚠️ Sistema comprometido! Continuar?")){
-    alert("💀 O vírus continua ativo!");
-  } else {
-    alert("😂 A diversão continua!");
-  }
-}, 15000);
-
-// Mensagem hacker estilo Doomsday
+// Mensagem em loop no corpo da página (para dar efeito de ataque hacker)
 setInterval(() => {
   const hackerMsgs = [
     "!!! VÍRUS DOOMSDAY ATIVO !!!",
@@ -88,9 +74,6 @@ setInterval(() => {
     "INTERFACES SOB CONTROLE DO VÍRUS!",
     "TODOS OS SISTEMAS CONECTADOS EM RISCO!"
   ];
-  document.getElementById("mensagem").textContent = hackerMsgs[Math.floor(Math.random() * hackerMsgs.length)];
-}, 7000);
+  document.body.querySelector('p').textContent = hackerMsgs[Math.floor(Math.random() * hackerMsgs.length)];
+}, 5000);
 </script>
-
-</body>
-</html>
