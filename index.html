@@ -1,5 +1,5 @@
 index.html.  
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
@@ -19,21 +19,32 @@ index.html.
     overflow: hidden;
   }
   h1 { font-size: 15vw; margin: 0; }
-  #mensagem { font-size: 4vw; max-width: 90%; margin: 2vw; min-height: 6vw; }
+  #mensagem { font-size: 4vw; max-width: 90%; margin: 2vw; min-height: 6vw; transition: all 0.3s ease; }
   #count { font-size: 10vw; margin: 3vw 0; color: red; }
+  #botaoFake {
+    font-size: 6vw;
+    padding: 3vw 6vw;
+    margin: 4vw;
+    border: 2px solid lime;
+    border-radius: 2vw;
+    background-color: black;
+    color: lime;
+  }
 </style>
 </head>
-<body ontouchstart="startTroll()">
+<body>
 
 <h1>💀</h1>
-<div id="mensagem"></div>
+<div id="mensagem">⚠️ VÍRUS DOOMSDAY ATIVO! ⚠️</div>
 <div id="count">10</div>
+<button id="botaoFake">CLIQUE AQUI!</button>
 
 <script>
 // Variáveis
 let i = 10;
 const counter = document.getElementById("count");
 const mensagem = document.getElementById("mensagem");
+const botaoFake = document.getElementById("botaoFake");
 
 // Mensagens hacker
 const mensagensHacker = [
@@ -43,6 +54,9 @@ const mensagensHacker = [
   "⚡ COMANDOS NÃO AUTORIZADOS!",
   "🚨 SISTEMA COMPROMETIDO!"
 ];
+
+// Mensagem do botão fake
+const mensagemBotao = "⚠️ ALERTA! SISTEMA COMPROMETIDO! VÍRUS DOOMSDAY ATIVADO! ⚠️";
 
 // Alertas pop-up
 function alertaPopup() {
@@ -69,16 +83,16 @@ function playAudio(){
 function tremerTela() {
   setInterval(() => {
     document.body.style.position = "relative";
-    document.body.style.left = Math.random()*40 - 20 + "px";
-    document.body.style.top = Math.random()*40 - 20 + "px";
-  }, 80);
+    document.body.style.left = Math.random()*20 - 10 + "px";
+    document.body.style.top = Math.random()*20 - 10 + "px";
+  }, 100);
 }
 
 // Fundo piscando vermelho/preto
 function fundoPisca() {
   setInterval(() => {
     document.body.style.backgroundColor = Math.random() > 0.5 ? "red" : "black";
-  }, 200);
+  }, 400);
 }
 
 // Mensagem falada
@@ -91,37 +105,33 @@ function falaAtaque(msg) {
   speechSynthesis.speak(alerta);
 }
 
-// Função de digitação animada
-function digitarMensagem(msg, elemento, velocidade = 50) {
-  elemento.textContent = "";
-  let index = 0;
-  const intervalo = setInterval(() => {
-    elemento.textContent += msg.charAt(index);
-    index++;
-    if (index >= msg.length) clearInterval(intervalo);
-  }, velocidade);
-}
-
-// Contagem regressiva com animação de digitação
+// Contagem regressiva
 function contagem() {
   const countdown = setInterval(() => {
     counter.textContent = i;
     i--;
-    // Mensagem hacker muda com digitação
-    const msg = mensagensHacker[Math.floor(Math.random() * mensagensHacker.length)];
-    digitarMensagem(msg, mensagem, 50);
+    // Mensagem hacker muda suavemente
+    mensagem.textContent = mensagensHacker[Math.floor(Math.random() * mensagensHacker.length)];
+    mensagem.style.transform = "scale(1.2)";
+    setTimeout(() => { mensagem.style.transform = "scale(1)"; }, 300);
+
     if(i < 0){
       clearInterval(countdown);
-      // Mensagem letal com animação
-      digitarMensagem("⚠️ SISTEMA TOTALMENTE COMPROMETIDO! VÍRUS DOOMSDAY LETAL ATIVADO! ⚠️", mensagem, 40);
       counter.textContent = "💀";
+      mensagem.textContent = "⚠️ SISTEMA TOTALMENTE COMPROMETIDO! VÍRUS DOOMSDAY LETAL ATIVADO! ⚠️";
       falaAtaque("⚠️ ALERTA MÁXIMO! SISTEMA TOTALMENTE COMPROMETIDO! VÍRUS DOOMSDAY LETAL ATIVADO!");
     }
   }, 1000);
 }
 
-// Inicia todos os efeitos quando o usuário toca
-function startTroll(){
+// Função do botão fake
+botaoFake.addEventListener("click", () => {
+  alert(mensagemBotao);
+  falaAtaque(mensagemBotao);
+});
+
+// Inicia todos os efeitos ao tocar na tela
+document.body.ontouchstart = () => {
   playAudio();
   tremerTela();
   fundoPisca();
